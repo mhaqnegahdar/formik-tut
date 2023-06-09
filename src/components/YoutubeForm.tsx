@@ -2,25 +2,52 @@
 import { useFormik } from "formik";
 import Link from "next/link";
 
-interface YoutubeFormValues {
-  name: string;
-  email: string;
-  channel: string;
+// Types
+interface formData {
+  name?: string;
+  email?: string;
+  channel?: string;
 }
 
+// Initial form state
 const initialValues = {
   name: "",
   email: "",
   channel: "",
 };
 
+// Submission Functionality
+const onSubmit = (values: formData) => {
+  console.log("Form Submitted with values:", values);
+};
+
+// Validation functionality
+const validate = (values: formData) => {
+  let errors = {} as formData;
+
+  if (!values.name) {
+    errors.name = "Required";
+  }
+  if (!values.email) {
+    errors.email = "Required";
+  } else if (!/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i.test(values.email)) {
+    errors.email = "Invalid email";
+  }
+  if (!values.channel) {
+    errors.channel = "Required";
+  }
+
+  return errors;
+};
+
 const YoutubeForm = () => {
-  const { handleChange, handleSubmit, values } = useFormik({
-    initialValues,
-    onSubmit: () => {
-      console.log("Form Submitted with values:", values);
-    },
-  });
+  // Use Formik
+  const { handleChange, handleSubmit, handleBlur, values, errors, touched } =
+    useFormik({
+      initialValues,
+      onSubmit,
+      validate,
+    });
 
   return (
     <div className="w-full max-w-xs">
@@ -42,7 +69,11 @@ const YoutubeForm = () => {
             placeholder="Name"
             onChange={handleChange}
             value={values.name}
+            onBlur={handleBlur}
           />
+          {errors.name && touched.name && (
+            <p className="text-red-500 text-xs italic">{errors.name}</p>
+          )}
         </div>
 
         <div className="mb-4">
@@ -59,10 +90,11 @@ const YoutubeForm = () => {
             placeholder="Email"
             onChange={handleChange}
             value={values.email}
+            onBlur={handleBlur}
           />
-          {/* <p className="text-red-500 text-xs italic">
-            Please fill out the field.
-          </p> */}
+          {errors.email && touched.email && (
+            <p className="text-red-500 text-xs italic">{errors.email}</p>
+          )}
         </div>
 
         <div className="mb-4">
@@ -79,7 +111,11 @@ const YoutubeForm = () => {
             placeholder="Channel"
             onChange={handleChange}
             value={values.channel}
+            onBlur={handleBlur}
           />
+          {errors.channel && touched.channel && (
+            <p className="text-red-500 text-xs italic">{errors.channel}</p>
+          )}
         </div>
 
         <div className="flex items-center justify-between">
