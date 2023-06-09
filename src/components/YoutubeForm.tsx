@@ -1,6 +1,7 @@
 "use client";
 import { useFormik } from "formik";
 import Link from "next/link";
+import { object, string } from "yup";
 
 // Types
 interface formData {
@@ -40,14 +41,27 @@ const validate = (values: formData) => {
   return errors;
 };
 
+const validationSchema = object({
+  name: string().required("Required!"),
+  email: string().email("Invalid email format!").required("Required"),
+  channel: string().required("Required!"),
+});
+
 const YoutubeForm = () => {
   // Use Formik
-  const { handleChange, handleSubmit, handleBlur, values, errors, touched } =
-    useFormik({
-      initialValues,
-      onSubmit,
-      validate,
-    });
+  const {
+    handleChange,
+    handleSubmit,
+    handleBlur,
+    getFieldProps,
+    values,
+    errors,
+    touched,
+  } = useFormik({
+    initialValues,
+    onSubmit,
+    validationSchema,
+  });
 
   return (
     <div className="w-full max-w-xs">
@@ -67,9 +81,7 @@ const YoutubeForm = () => {
             id="name"
             type="text"
             placeholder="Name"
-            onChange={handleChange}
-            value={values.name}
-            onBlur={handleBlur}
+            {...getFieldProps("name")}
           />
           {errors.name && touched.name && (
             <p className="text-red-500 text-xs italic">{errors.name}</p>
@@ -88,9 +100,7 @@ const YoutubeForm = () => {
             id="email"
             type="email"
             placeholder="Email"
-            onChange={handleChange}
-            value={values.email}
-            onBlur={handleBlur}
+            {...getFieldProps("email")}
           />
           {errors.email && touched.email && (
             <p className="text-red-500 text-xs italic">{errors.email}</p>
@@ -109,9 +119,7 @@ const YoutubeForm = () => {
             id="channel"
             type="text"
             placeholder="Channel"
-            onChange={handleChange}
-            value={values.channel}
-            onBlur={handleBlur}
+            {...getFieldProps("channel")}
           />
           {errors.channel && touched.channel && (
             <p className="text-red-500 text-xs italic">{errors.channel}</p>
