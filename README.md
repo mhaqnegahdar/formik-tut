@@ -1,4 +1,4 @@
-# Portfolio Blog - Nextjs v13.4.1
+# Formik Practice - Nextjs v13.4.1
 
 This is a practical [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app) for practicing **Formik** and **Yup** libraries.
 
@@ -9,8 +9,8 @@ Explore the [demo](https://maxjn-formik-tut.vercel.app/) for better understandin
 - TSX, Tailwindcss,
 - TypeScript
 - **Nextjs v13.4.1**
-- **Packages:** fFormik, Yup
-- **Routing:** useing new app directory
+- **Packages:** Formik, Yup
+- **Routing:** using new app directory
 
 ## Features
 
