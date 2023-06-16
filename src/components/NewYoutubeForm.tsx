@@ -249,7 +249,7 @@ const NewYoutubeForm = () => {
                   (phoneNumber: string, index: number) => (
                     <div className="mb-4" key={index}>
                       <label
-                        className="block text-gray-700 text-sm font-bold mb-2"
+                        className="block text-gray-400 text-xs font-bold mb-1"
                         htmlFor={`phoneNumber[${index}]`}
                       >
                         Phone Number {index + 1}
@@ -301,15 +301,6 @@ const NewYoutubeForm = () => {
           </div>
         </Form>
       </Formik>
-      <p className="text-center text-gray-500 text-xs">
-        &copy;{new Date().getFullYear()}{" "}
-        <Link
-          className="hover:text-blue-600 transition"
-          href={`https://github.com/maxjn`}
-        >
-          Mohamad Haqnegahdar (Maxjn)
-        </Link>
-      </p>
     </div>
   );
 };

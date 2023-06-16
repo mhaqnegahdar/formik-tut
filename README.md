@@ -19,6 +19,8 @@ Explore the [demo](https://maxjn-formik-tut.vercel.app/) for better understandin
 - Managing form state
 - Handling form submission
 - Validation & displaying errors
+- Customizing form and controls
+- Reusable form and controls
 
 ## Installation
 
