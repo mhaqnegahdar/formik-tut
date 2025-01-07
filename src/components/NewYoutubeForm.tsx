@@ -45,6 +45,7 @@ const onSubmit = (values: formData) => {
 };
 
 const phoneRegex = RegExp(/09(0[1-2]|1[\d]|3[\d]|2[0-1])[\d]{3}[\d]{4}/g);
+
 const validationSchema = object({
   name: string().required("Required!"),
   email: string().email("Invalid email format!").required("Required"),
